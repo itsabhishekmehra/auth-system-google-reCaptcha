@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<h2>Register</h2>
+<% if (error) { %>
+  <p style="color: red;"><%= error %></p>
+<% } %>
+<% if (success) { %>
+  <p style="color: green;"><%= success %></p>
+<% } %>
+<form method="POST" action="/register">
+  <label>Username:</label>
+  <input type="text" name="username" required />
+  <label>Email:</label>
+  <input type="email" name="email" required />
+  <label>Password:</label>
+  <input type="password" name="password" required minlength="8" />
+  <button type="submit">Register</button>
+</form>

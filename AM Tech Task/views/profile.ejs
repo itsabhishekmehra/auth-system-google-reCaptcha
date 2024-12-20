@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+</head>
+<body>
+  <h1>Welcome, <%= user.username %></h1>
+  <p>ID: <%= user.id %></p>
+  <p>Email: <%= user.email %></p>
+  <p>Created At: <%= user.created_at %></p>
+
+  <form action="/logout" method="GET">
+    <button type="submit">Logout</button>
+  </form>
+
+  <script>
+    const tokenExpiry = <%= user.exp %> * 1000; // Convert to milliseconds
+    const warningTime = tokenExpiry - Date.now() - 60000; // Warn 1 minute before expiry
+
+    if (warningTime > 0) {
+      setTimeout(() => {
+        alert('Your session is about to expire. Please save your work and re-login.');
+      }, warningTime);
+    }
+  </script>
+</body>
+</html>
